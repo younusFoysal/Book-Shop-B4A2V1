@@ -14,11 +14,18 @@ app.use(cors());
 app.use('/api', BookRoutes);
 app.use('/api', OrderRoutes)
 
-const getAController = (req: Request, res: Response) => {
-  const a = 10;
-  res.send(a);
+const gethome = (req: Request, res: Response) => {
+  res.status(200).json({
+    message: 'Book Server is Running...',
+  });
 };
 
-app.get('/', getAController);
+app.get('/', gethome);
+
+app.use((req: Request, res: Response) => {
+  res.status(404).json({
+    error: 'Invalid Route',
+  });
+});
 
 export default app;

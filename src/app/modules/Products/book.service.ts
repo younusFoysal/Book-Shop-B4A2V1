@@ -23,6 +23,7 @@ const getAllBookFromDB = async (searchTerm: string | undefined | null | Record<n
 };
 
 const getSingleBookFromDB = async (productId: string) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     const book = await BookModel.findById(productId);
     if (!book) {
@@ -35,6 +36,7 @@ const getSingleBookFromDB = async (productId: string) => {
 };
 
 const updateBookInDB = async (productId: string, updateData: Record<string, any>) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     const updatedBook = await BookModel.findByIdAndUpdate(productId, updateData, {
       new: true,
@@ -50,13 +52,14 @@ const updateBookInDB = async (productId: string, updateData: Record<string, any>
 };
 
 const deleteBookFromDB = async (productId: string) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     const deletedBook = await BookModel.findByIdAndDelete(productId);
     if (!deletedBook) {
       throw new Error('Book not found');
     }
     return deletedBook;
-  } catch (error) {
+  }catch (error) {
     throw error;
   }
 };
